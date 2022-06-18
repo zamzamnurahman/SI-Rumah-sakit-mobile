@@ -52,8 +52,7 @@ Widget _drawerHeader(String? nama, String? email) {
           height: 150,
           width: double.infinity,
           child: Image.asset(
-            'assets/images/pasien.jpg',
-            fit: BoxFit.cover,
+            'assets/images/illustration_rumah_sakit.png',
           ),
         ),
         SizedBox(

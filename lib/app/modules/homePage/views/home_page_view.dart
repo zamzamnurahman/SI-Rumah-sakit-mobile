@@ -175,7 +175,8 @@ class HomePageView extends GetView<HomePageController> {
                             ),
                             GetBuilder<HomePageController>(
                                 builder: (_) =>
-                                    controller.semuaPasien!.length != 0
+                                    controller.semuaPasien != null &&
+                                            controller.semuaPasien!.length != 0
                                         ? Text(
                                             '${controller.semuaPasien![0]['antrian']}',
                                             style: const TextStyle(
@@ -256,6 +257,15 @@ class HomePageView extends GetView<HomePageController> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
+                            Container(
+                              width: 352,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.asset(
+                                  'assets/images/illustration_rumah_sakit.png',
+                                ),
+                              ),
+                            ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(15),
                               child: Image.asset(

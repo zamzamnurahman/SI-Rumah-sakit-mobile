@@ -34,6 +34,10 @@ class LoginController extends GetxController {
 
         var cekEmail = alluserEmail.contains(email.text);
         var cekPass = alluserPass.contains(pass.text);
+        print(alluserEmail);
+        print(email.text);
+        print(alluserPass);
+        print(pass.text);
         if (cekEmail == true && cekPass == true) {
           print('Berhasil login');
           Get.offAllNamed(Routes.HOME_PAGE, arguments: id);

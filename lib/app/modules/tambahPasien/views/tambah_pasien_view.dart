@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -68,19 +69,52 @@ class TambahPasienView extends GetView<TambahPasienController> {
                   const SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    controller: controller.jenis_kelamin,
-                    decoration: InputDecoration(
-                      hintText: 'laki-laki/perempuan',
-                      labelText: 'Jenis Kelamin',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Obx(
+                      () => DropdownButton<String>(
+                        alignment: Alignment.centerLeft,
+                        isExpanded: true,
+                        isDense: true,
+                        borderRadius: BorderRadius.circular(15),
+                        items: const <DropdownMenuItem<String>>[
+                          DropdownMenuItem(
+                            enabled: false,
+                            child: Text(
+                              'Pilih Jenis Kelamin',
+                            ),
+                            value: 'jenis kelamin',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Laki-laki'),
+                            value: 'laki-laki',
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Perempuan',
+                            child: Text('Perempuan'),
+                          ),
+                        ],
+                        value: controller.isGender.value,
+                        hint: Text('jenis kelamin'),
+                        onChanged: (value) {
+                          controller.isGender.value = value!;
+                          print(controller.isGender.value);
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   TextField(
+                    keyboardType: TextInputType.phone,
                     controller: controller.no_telp,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -149,12 +183,49 @@ class TambahPasienView extends GetView<TambahPasienController> {
                   const SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    controller: controller.j_pemeriksaan,
-                    decoration: InputDecoration(
-                      hintText: 'Jenis Pemeriksaan',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Obx(
+                      () => DropdownButton<String>(
+                        alignment: Alignment.centerLeft,
+                        isExpanded: true,
+                        isDense: true,
+                        borderRadius: BorderRadius.circular(15),
+                        items: const <DropdownMenuItem<String>>[
+                          DropdownMenuItem(
+                            enabled: false,
+                            child: Text(
+                              'Pilih Jenis Pemeriksaan',
+                            ),
+                            value: 'jenis pemeriksaan',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Pemeriksaan Umum'),
+                            value: '0',
+                          ),
+                          DropdownMenuItem<String>(
+                            child: Text('Pemeriksaan Khusus'),
+                            value: '1',
+                          ),
+                          DropdownMenuItem<String>(
+                            child: Text('Pemeriksaan Darurat'),
+                            value: '2',
+                          ),
+                        ],
+                        value: controller.isjenisPemeriksaan.value,
+                        hint: Text('jenis Pemeriksaan'),
+                        onChanged: (value) {
+                          controller.isjenisPemeriksaan.value = value!;
+                          print(controller.isjenisPemeriksaan.value);
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(

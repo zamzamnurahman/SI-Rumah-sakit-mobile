@@ -7,15 +7,15 @@ import 'package:rumah_sakit/app/modules/homePage/controllers/home_page_controlle
 import 'package:rumah_sakit/app/routes/app_pages.dart';
 
 class TambahPasienController extends GetxController {
+  RxString isGender = 'jenis kelamin'.obs;
+  RxString isjenisPemeriksaan = 'jenis pemeriksaan'.obs;
   int pj_antrian = int.parse(Get.arguments);
   var id = Get.put<HomePageController>(HomePageController()).id;
   var nama = TextEditingController();
-  var jenis_kelamin = TextEditingController();
   var no_telp = TextEditingController();
   var tanggal_lahir = TextEditingController();
   var alamat = TextEditingController();
   var keluhan = TextEditingController();
-  var j_pemeriksaan = TextEditingController();
   var j_pengobatan = TextEditingController();
 
   Future tambahPasien() async {
@@ -25,12 +25,12 @@ class TambahPasienController extends GetxController {
       pj_antrian++;
       var response = await http.post(url, body: {
         "nama_pasien": nama.text,
-        "jenis_kelamin": jenis_kelamin.text,
+        "jenis_kelamin": isGender.value,
         "no_telp": no_telp.text,
         "tanggal_lahir": tanggal_lahir.text,
         "alamat": alamat.text,
         "keluhan": keluhan.text,
-        "jenis_pemeriksaan": j_pemeriksaan.text,
+        "jenis_pemeriksaan": isjenisPemeriksaan.value,
         "jenis_pengobatan": '0',
         "id_user": '$id',
         "antrian": '${pj_antrian}',
@@ -54,12 +54,10 @@ class TambahPasienController extends GetxController {
   @override
   void onInit() {
     nama;
-    jenis_kelamin;
     no_telp;
     tanggal_lahir;
     alamat;
     keluhan;
-    j_pemeriksaan;
     j_pengobatan;
     super.onInit();
   }
